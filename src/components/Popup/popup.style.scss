@@ -1,0 +1,29 @@
+.Popup-Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--popup_container_background);
+  z-index: 1000;
+  .Popup-Wrapper {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    padding: 3rem;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    background-color: var(--popup_wrapper_background);
+    z-index: 1000;
+    .Close-Button {
+      border: none;
+      background: transparent;
+      float: right;
+      padding: 1rem;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}

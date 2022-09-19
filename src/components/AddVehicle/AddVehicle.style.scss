@@ -1,0 +1,49 @@
+.AddVehicle-Container {
+  .Headding {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .Field-Container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .Label::after {
+      content: "*";
+      color: var(--required_color);
+    }
+    .Field-DropDown {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .DropDown-List {
+        height: 37px;
+        width: 320px;
+        cursor: pointer;
+      }
+    }
+
+    .Field-Input {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      input {
+        height: 34px;
+        padding-left: 4px;
+      }
+    }
+
+    .Submit-Button {
+      text-align: center;
+      input {
+        padding: 10px 38px;
+        border: none;
+        border-radius: 4px;
+        background: var(--button_background);
+        color: var(--button_text_color);
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.TollList-Container {
+  //margin-top: 2.4rem;
+  margin: 4rem 8rem;
+
+  .TollList-Wrapper {
+    width: 100%;
+    border-collapse: collapse;
+
+    .T-Header {
+      background: var(--t_header_background);
+      text-align: left;
+      .T-Head {
+        padding: 6px 6px;
+      }
+    }
+
+    .Table-Body {
+      text-align: left;
+      .T-Body {
+        padding: 12px 6px;
+        border-bottom: 1px solid var(--border_color);
+      }
+    }
+  }
+  .No-RecourdFound {
+    padding: 1.5rem;
+    text-align: center;
+  }
+}

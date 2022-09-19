@@ -1,0 +1,56 @@
+.AddToll-Container {
+  .Headding {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .Field-Container {
+    .Label::after {
+      content: "*";
+      color: var(--required_color);
+    }
+
+    .Field-Input {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      input {
+        height: 38px;
+        max-width: 100%;
+        padding-left: 4px;
+      }
+    }
+    .Vehicle-Fare {
+      margin-top: 2rem;
+      .Field-Wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-top: 15px;
+        .Field-Input {
+          input {
+            height: 35px;
+            width: 200px;
+            padding-left: 4px;
+          }
+        }
+        .Field-DropDown {
+          .DropDown-List {
+            height: 37px;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .Submit {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 10px 38px;
+      border: none;
+      border-radius: 4px;
+      background: var(--button_background);
+      color: var(--button_text_color);
+      cursor: pointer;
+    }
+  }
+}

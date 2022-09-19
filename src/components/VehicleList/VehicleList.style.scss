@@ -1,0 +1,33 @@
+.VehicelList-Container {
+  margin-top: 2.4rem;
+  .VehicelList-Wrapper {
+    width: 100%;
+    border-collapse: collapse;
+
+    .T-Header {
+      background: var(--t_header_background);
+      text-align: left;
+      .T-Head {
+        padding: 6px 6px;
+      }
+    }
+
+    .Table-Body {
+      text-align: left;
+      .T-Body {
+        padding: 12px 6px;
+        border-bottom: 1px solid var(--border_color);
+      }
+      .Vehivle-Number {
+        text-transform: uppercase;
+      }
+      .Toll-Name {
+        text-transform: capitalize;
+      }
+    }
+  }
+  .No-RecourdFound {
+    padding: 1.5rem;
+    text-align: center;
+  }
+}
