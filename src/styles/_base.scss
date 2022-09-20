@@ -14,12 +14,20 @@ button {
   cursor: pointer;
 }
 
-input:focus {
-  outline: none;
+input {
+  border: none;
+  background: var(--input_background);
+  &:focus {
+    outline: none;
+  }
 }
 
-select:focus {
-  outline: none;
+select {
+  border: none;
+  background: var(--select_background);
+  &:focus {
+    outline: none;
+  }
 }
 
 li {

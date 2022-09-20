@@ -62,6 +62,17 @@
       .Toll-Name {
         text-transform: capitalize;
       }
+
+      .Delete-Icon {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .Icon {
+          cursor: pointer;
+          padding-right: 2rem;
+        }
+      }
       .T-Body {
         padding: 12px 6px;
         border-bottom: 1px solid var(--border_color);

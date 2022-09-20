@@ -10,8 +10,13 @@ const AddToll = (props) => {
   };
 
   const renderFields = () => {
-    const { vehicleNames, handleOnChange, handleSubmit, isButtonEnable } =
-      props;
+    const {
+      vehicleNames,
+      handleOnChange,
+      handleSubmit,
+      isButtonEnable,
+      tollEntry,
+    } = props;
 
     return (
       <>
@@ -25,6 +30,7 @@ const AddToll = (props) => {
             <label className="Label">Toll Name</label>
             <input
               type={"text"}
+              value={tollEntry.tollName}
               name="tollName"
               placeholder="Enter toll name"
               autocomplete="off"
@@ -49,6 +55,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.singleJouurney_one}
                   name="singleJouurney_one"
                   placeholder="Single Journey"
                   autocomplete="off"
@@ -58,6 +65,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.returnJourney_one}
                   name="returnJourney_one"
                   placeholder="Return Journey"
                   autocomplete="off"
@@ -79,6 +87,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.singleJouurney_two}
                   name="singleJouurney_two"
                   placeholder="Single Journey"
                   autocomplete="off"
@@ -88,6 +97,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.returnJourney_two}
                   name="returnJourney_two"
                   placeholder="Return Journey"
                   autocomplete="off"
@@ -109,6 +119,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.singleJourney_three}
                   name="singleJourney_three"
                   placeholder="Single Journey"
                   autocomplete="off"
@@ -118,6 +129,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.returnJourney_three}
                   name="returnJourney_three"
                   placeholder="Return Journey"
                   autocomplete="off"
@@ -139,6 +151,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.singleJourney_four}
                   name="singleJourney_four"
                   placeholder="Single Journey"
                   autocomplete="off"
@@ -148,6 +161,7 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
+                  value={tollEntry.returnJourney_four}
                   name="returnJourney_four"
                   placeholder="Return Journey"
                   autocomplete="off"
@@ -156,10 +170,10 @@ const AddToll = (props) => {
               </div>
             </div>
           </div>
-          <div className={isButtonEnable ? "Disabled" : "Submit-Button"}>
+          <div className={isButtonEnable ? "Submit-Button" : "Disabled"}>
             <input
               className="Submit"
-              // disabled={!isButtonEnable}
+              disabled={!isButtonEnable}
               type={"submit"}
               value={"Add details"}
             />

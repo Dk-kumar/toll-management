@@ -1,4 +1,4 @@
-import { SearchIcon } from "../../utils/svg";
+import { SearchIcon, DeleteIcon } from "../../utils/svg";
 import AddTollContainer from "../AddToll/AddToll.container";
 import AddVehicleContainer from "../AddVehicle/AddVehicle.container";
 import Popup from "../Popup/popup.component";
@@ -78,13 +78,14 @@ const TollList = (props) => {
   };
 
   const renderTBody = () => {
-    const { tollLists } = props;
+    const { tollLists, deleteList } = props;
 
     return (
       <tbody className="Table-Body">
         {tollLists?.map(
           (
             {
+              id,
               tollName,
               singleJouurney_one,
               singleJouurney_two,
@@ -106,8 +107,11 @@ const TollList = (props) => {
                 <td className="T-Body">
                   {singleJourney_three + "/" + returnJourney_three}
                 </td>
-                <td className="T-Body">
+                <td className="T-Body Delete-Icon">
                   {singleJourney_four + "/" + returnJourney_four}
+                  <i className="Icon" onClick={() => deleteList(id)}>
+                    {DeleteIcon()}
+                  </i>
                 </td>
               </tr>
             );

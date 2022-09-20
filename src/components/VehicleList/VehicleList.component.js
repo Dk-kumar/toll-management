@@ -1,4 +1,4 @@
-import { FilterIcon, SearchIcon, Check } from "../../utils/svg";
+import { FilterIcon, SearchIcon, CheckIcon } from "../../utils/svg";
 import AddTollContainer from "../AddToll/AddToll.container";
 import AddVehicleContainer from "../AddVehicle/AddVehicle.container";
 import Popup from "../Popup/popup.component";
@@ -33,11 +33,11 @@ const VehicleList = (props) => {
                   return (
                     <li
                       className="list"
-                      onClick={() => filteredBy(tollNameList.tollName)}
+                      onClick={() => filteredBy(tollNameList.name)}
                     >
-                      {tollNameList.tollName}
+                      {tollNameList.name}
                       <i className="Check-Icon">
-                        {filter === tollNameList.tollName && Check()}
+                        {filter === tollNameList.name && CheckIcon()}
                       </i>
                     </li>
                   );

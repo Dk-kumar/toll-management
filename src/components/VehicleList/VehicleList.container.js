@@ -4,15 +4,14 @@ import VehicleList from "./VehicleList.component";
 import { getBrowserData } from "../../utils/browserDB";
 import { VEHICLE_ENTRY } from "../../Constants";
 import { useNavigate } from "react-router-dom";
-import { PopupHandle } from "../../utils/InitialStates";
-import { TOLLENTRY } from "../../Constants";
+import { PopupHandle, TollNames } from "../../utils/InitialStates";
 
 const VehicleListContainer = (props) => {
   const [isPopupOpen, setPopupOpen] = useState(PopupHandle);
   const [isToolTipOpen, setToolTip] = useState(false);
   const [filter, setFilter] = useState("");
   const [search, setSearch] = useState("");
-  const [tollNamesList, setTollNames] = useState([]);
+  const [tollNamesList, setTollNames] = useState(TollNames);
   const [vehicleLists, setVehicleList] = useState([]);
 
   const navigate = useNavigate();
@@ -21,9 +20,9 @@ const VehicleListContainer = (props) => {
     setVehicleList(getBrowserData(VEHICLE_ENTRY));
   }, [isPopupOpen]);
 
-  useEffect(() => {
-    setTollNames(getBrowserData(TOLLENTRY));
-  }, [isToolTipOpen]);
+  // useEffect(() => {
+  //   setTollNames(getBrowserData(TOLLENTRY));
+  // }, [isToolTipOpen]);
 
   useEffect(() => {}, [search]);
 

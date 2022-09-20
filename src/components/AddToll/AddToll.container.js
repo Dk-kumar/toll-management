@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TOLLENTRY } from "../../Constants";
 import { getBrowserData, setBrowserData } from "../../utils/browserDB";
-import { VehicleNames } from "../../utils/InitialStates";
+import { VehicleNames, AddTollState } from "../../utils/InitialStates";
+import { Validator, TypeChecker } from "../../utils/validator";
 import AddToll from "./AddToll.component";
 
 const AddTollContainer = (props) => {
-  const [tollEntry, setTollEntry] = useState({});
+  const [tollEntry, setTollEntry] = useState(AddTollState);
+  const [isButtonEnable, setButtonEnable] = useState(false);
+
+  useEffect(() => {
+    setButtonEnable(!Validator(tollEntry));
+  }, [tollEntry]);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
 
-    setTollEntry({
-      ...tollEntry,
-      [name]: value,
-    });
+    if (!TypeChecker(name, value)) {
+      setTollEntry({
+        ...tollEntry,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -21,7 +29,8 @@ const AddTollContainer = (props) => {
 
     const { onHandelPopup } = props;
     const tollEntryData = [];
-    
+
+    tollEntry["id"] = getBrowserData(TOLLENTRY)?.length || 0;
     if (getBrowserData(TOLLENTRY)?.length > 0) {
       const browserData = getBrowserData(TOLLENTRY);
 
@@ -36,6 +45,8 @@ const AddTollContainer = (props) => {
 
   const containerStates = {
     vehicleNames: VehicleNames,
+    isButtonEnable: isButtonEnable,
+    tollEntry: tollEntry,
   };
 
   const containerFunctions = {

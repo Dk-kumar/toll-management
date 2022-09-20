@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TOLLENTRY } from "../../Constants";
-import { getBrowserData } from "../../utils/browserDB";
+import { getBrowserData, setBrowserData } from "../../utils/browserDB";
 import { useNavigate } from "react-router-dom";
 import { PopupHandle } from "../../utils/InitialStates";
 import TollList from "./TollList.component";
@@ -15,7 +15,7 @@ const TollListContainer = () => {
 
   useEffect(() => {
     setTollLists(getBrowserData(TOLLENTRY));
-  }, []);
+  }, [isPopupOpen]);
 
   const onHandelPopup = (key) => {
     if (!key) {
@@ -41,11 +41,21 @@ const TollListContainer = () => {
     navigate("/");
   };
 
+  const deleteList = (id) => {
+    const filteredList = getBrowserData(TOLLENTRY).filter((res) => {
+      return res.id !== id;
+    });
+
+    setBrowserData(TOLLENTRY, filteredList);
+    setTollLists(filteredList);
+  };
+
   const containerFunctions = {
     onHandelPopup: (key) => onHandelPopup(key),
     handleSearch: (event) => handleSearch(event),
-    handleNavigation: () => handleNavigation(),
     setToolTip: (value) => setToolTip(value),
+    deleteList: (id) => deleteList(id),
+    handleNavigation: () => handleNavigation(),
   };
 
   const containerStates = {
