@@ -3,10 +3,9 @@ import { CloseIcon } from "../../utils/svg";
 import "./popup.style.scss";
 
 const Popup = (props) => {
-  const { onHandelPopup, isPopupOpen, children } = props;
+  const { onHandelPopup, children } = props;
 
   const RenderPopup = () => {
-    // if (!isPopupOpen) return null;
     return ReactDOM.createPortal(
       <div className="Popup-Container">
         <div className="Popup-Wrapper">

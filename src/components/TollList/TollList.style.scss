@@ -1,10 +1,53 @@
 .TollList-Container {
   //margin-top: 2.4rem;
-  margin: 4rem 8rem;
+  margin: 2rem 8rem;
+
+  .HeaderList-Wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .HeaderList-Left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .Entries-Text {
+        border-right: 1px solid var(--border_color);
+        padding-right: 18px;
+      }
+
+      .Search-Field {
+        position: relative;
+
+        .Search-Icon {
+          position: absolute;
+          left: 6px;
+          top: 4px;
+        }
+        input {
+          height: 28px;
+          width: 250px;
+          padding-left: 32px;
+          border-radius: 20px;
+          border: 1px solid var(--border_color);
+        }
+      }
+    }
+
+    .HeaderList-Right {
+      .Button-Wrapper {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+  }
 
   .TollList-Wrapper {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 1.5rem;
 
     .T-Header {
       background: var(--t_header_background);
@@ -16,6 +59,9 @@
 
     .Table-Body {
       text-align: left;
+      .Toll-Name {
+        text-transform: capitalize;
+      }
       .T-Body {
         padding: 12px 6px;
         border-bottom: 1px solid var(--border_color);

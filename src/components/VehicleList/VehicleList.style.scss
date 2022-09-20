@@ -1,9 +1,108 @@
 .VehicelList-Container {
-  margin-top: 2.4rem;
+  margin: 2rem 8rem;
+
+  .HeaderList-Wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .HeaderList-Left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .Entries-Text {
+        border-right: 1px solid var(--border_color);
+        padding-right: 18px;
+      }
+
+      .Disabled-ToolTip {
+        display: none;
+      }
+
+      .Filter-ToolTip {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .Filtered-By {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+
+          .Value {
+            text-transform: capitalize;
+          }
+        }
+
+        .ToolTip-DropDown {
+          display: block;
+          width: 130px;
+          background: var(--tool_tip_background);
+          color: var(--tool_tip_color);
+          border-radius: 6px;
+          padding: 8px 0px 8px 12px;
+          position: absolute;
+          z-index: 1;
+          top: 36px;
+          left: 49px;
+          margin-left: -60px;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 23px;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+          }
+
+          .list {
+            padding: 8px 0px;
+            text-transform: capitalize;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+        }
+      }
+
+      .Filter-Icon {
+        cursor: pointer;
+      }
+
+      .Search-Field {
+        position: relative;
+
+        .Search-Icon {
+          position: absolute;
+          left: 6px;
+          top: 4px;
+        }
+        input {
+          height: 28px;
+          width: 250px;
+          padding-left: 32px;
+          border-radius: 20px;
+          border: 1px solid var(--border_color);
+        }
+      }
+    }
+
+    .HeaderList-Right {
+      .Button-Wrapper {
+        display: flex;
+        gap: 2rem;
+      }
+    }
+  }
   .VehicelList-Wrapper {
     width: 100%;
     border-collapse: collapse;
-
+    margin-top: 1.5rem;
     .T-Header {
       background: var(--t_header_background);
       text-align: left;
