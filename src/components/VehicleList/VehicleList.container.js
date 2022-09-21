@@ -25,7 +25,7 @@ const VehicleListContainer = (props) => {
   }, [isToolTipOpen]);
 
   useEffect(() => {
-    if (search) {
+    if (search && vehicleLists) {
       setVehicleList(
         getBrowserData(VEHICLE_ENTRY).filter((res) => {
           return res.vehicleNumber.toLowerCase().includes(search.toLowerCase());
