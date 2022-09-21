@@ -55,8 +55,8 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
-                  value={tollEntry.singleJouurney_one}
-                  name="singleJouurney_one"
+                  value={tollEntry.singleJourney_one}
+                  name="singleJourney_one"
                   placeholder="Single Journey"
                   autocomplete="off"
                   onChange={handleOnChange}
@@ -87,8 +87,8 @@ const AddToll = (props) => {
               <div className="Field-Input">
                 <input
                   type={"text"}
-                  value={tollEntry.singleJouurney_two}
-                  name="singleJouurney_two"
+                  value={tollEntry.singleJourney_two}
+                  name="singleJourney_two"
                   placeholder="Single Journey"
                   autocomplete="off"
                   onChange={handleOnChange}

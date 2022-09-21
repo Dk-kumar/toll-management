@@ -7,12 +7,12 @@ import "./VehicleList.style.scss";
 const VehicleList = (props) => {
   const HeaderList = () => {
     const {
-      handleSearch,
       tollNamesList,
       isToolTipOpen,
       setToolTip,
       filter,
       filteredBy,
+      setSearch,
     } = props;
 
     return (
@@ -29,15 +29,19 @@ const VehicleList = (props) => {
                   isToolTipOpen ? "ToolTip-DropDown" : "Disabled-ToolTip"
                 }
               >
+                <li className="list" onClick={() => filteredBy("")}>
+                  All
+                  <i className="Check-Icon">{filter === "" && CheckIcon()}</i>
+                </li>
                 {tollNamesList?.map((tollNameList) => {
                   return (
                     <li
                       className="list"
-                      onClick={() => filteredBy(tollNameList.name)}
+                      onClick={() => filteredBy(tollNameList.tollName)}
                     >
-                      {tollNameList.name}
+                      {tollNameList.tollName}
                       <i className="Check-Icon">
-                        {filter === tollNameList.name && CheckIcon()}
+                        {filter === tollNameList.tollName && CheckIcon()}
                       </i>
                     </li>
                   );
@@ -53,7 +57,7 @@ const VehicleList = (props) => {
               <input
                 className="Search-Input"
                 placeholder="Search Vehicle"
-                onChange={handleSearch}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <i className="Search-Icon">{SearchIcon()}</i>
             </div>
@@ -120,16 +124,16 @@ const VehicleList = (props) => {
       <tbody className="Table-Body">
         {vehicleLists?.map(
           (
-            { vehicleType, vehicleNumber, tollName, traiff, dateTime },
+            { vehicleType, vehicleNumber, tollName, tariff, date, time },
             index
           ) => {
             return (
               <tr key={index}>
                 <td className="T-Body">{vehicleType}</td>
                 <td className="T-Body Vehivle-Number">{vehicleNumber}</td>
-                <td className="T-Body">{dateTime}</td>
+                <td className="T-Body">{`${date},${time}`}</td>
                 <td className="T-Body Toll-Name">{tollName}</td>
-                <td className="T-Body">{traiff}</td>
+                <td className="T-Body">{tariff}</td>
               </tr>
             );
           }
@@ -144,7 +148,6 @@ const VehicleList = (props) => {
 
   const renderVehicleList = () => {
     const { vehicleLists } = props;
-
     return (
       <>
         {HeaderList()}
@@ -152,7 +155,7 @@ const VehicleList = (props) => {
           {renderTHead()}
           {renderTBody()}
         </table>
-        {!vehicleLists && noRecordFound()}
+        {vehicleLists?.length === 0 && noRecordFound()}
       </>
     );
   };

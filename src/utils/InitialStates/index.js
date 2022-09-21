@@ -6,7 +6,6 @@ export const VehicleNames = [
 ];
 
 export const TollNames = [
-  { id: 0, name: "All" },
   { id: 1, name: "Salem" },
   { id: 2, name: "Omallur" },
   { id: 3, name: "Kappalur" },
@@ -18,16 +17,16 @@ export const AddVehicleState = {
   vehicleType: "",
   vehicleNumber: "",
   tollName: "",
-  traiff: "",
+  tariff: 0,
 };
 
 export const AddTollState = {
   tollName: "",
   tollType_one: "",
-  singleJouurney_one: "",
+  singleJourney_one: "",
   returnJourney_one: "",
   tollType_two: "",
-  singleJouurney_two: "",
+  singleJourney_two: "",
   returnJourney_two: "",
   tollType_three: "",
   singleJourney_three: "",

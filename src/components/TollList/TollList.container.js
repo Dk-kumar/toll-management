@@ -6,15 +6,31 @@ import { PopupHandle } from "../../utils/InitialStates";
 import TollList from "./TollList.component";
 
 const TollListContainer = () => {
-  const [tollLists, setTollLists] = useState([]);
+  const [tollNamesList, setTollNames] = useState();
   const [isPopupOpen, setPopupOpen] = useState(PopupHandle);
-  const [isToolTipOpen, setToolTip] = useState(false);
   const [search, setSearch] = useState("");
+  let [tollLists, setTollLists] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     setTollLists(getBrowserData(TOLLENTRY));
+  }, [isPopupOpen]);
+
+  useEffect(() => {
+    if (search && tollLists) {
+      setTollLists(
+        getBrowserData(TOLLENTRY).filter((res) => {
+          return res.tollName.toLowerCase().includes(search.toLowerCase());
+        })
+      );
+    } else {
+      setTollLists(getBrowserData(TOLLENTRY));
+    }
+  }, [search]);
+
+  useEffect(() => {
+    setTollNames(getBrowserData(TOLLENTRY));
   }, [isPopupOpen]);
 
   const onHandelPopup = (key) => {
@@ -53,7 +69,7 @@ const TollListContainer = () => {
   const containerFunctions = {
     onHandelPopup: (key) => onHandelPopup(key),
     handleSearch: (event) => handleSearch(event),
-    setToolTip: (value) => setToolTip(value),
+    setSearch: (searchValue) => setSearch(searchValue),
     deleteList: (id) => deleteList(id),
     handleNavigation: () => handleNavigation(),
   };
@@ -61,8 +77,8 @@ const TollListContainer = () => {
   const containerStates = {
     isPopupOpen: isPopupOpen,
     search: search,
-    isToolTipOpen: isToolTipOpen,
     tollLists: tollLists,
+    tollNamesList: tollNamesList,
   };
 
   return <TollList {...containerStates} {...containerFunctions} />;

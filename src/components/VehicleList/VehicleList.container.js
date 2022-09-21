@@ -2,17 +2,17 @@
 import { useEffect, useState } from "react";
 import VehicleList from "./VehicleList.component";
 import { getBrowserData } from "../../utils/browserDB";
-import { VEHICLE_ENTRY } from "../../Constants";
+import { VEHICLE_ENTRY, TOLLENTRY } from "../../Constants";
 import { useNavigate } from "react-router-dom";
-import { PopupHandle, TollNames } from "../../utils/InitialStates";
+import { PopupHandle } from "../../utils/InitialStates";
 
 const VehicleListContainer = (props) => {
   const [isPopupOpen, setPopupOpen] = useState(PopupHandle);
   const [isToolTipOpen, setToolTip] = useState(false);
   const [filter, setFilter] = useState("");
   const [search, setSearch] = useState("");
-  const [tollNamesList, setTollNames] = useState(TollNames);
-  const [vehicleLists, setVehicleList] = useState([]);
+  const [tollNamesList, setTollNames] = useState();
+  let [vehicleLists, setVehicleList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -20,19 +20,31 @@ const VehicleListContainer = (props) => {
     setVehicleList(getBrowserData(VEHICLE_ENTRY));
   }, [isPopupOpen]);
 
-  // useEffect(() => {
-  //   setTollNames(getBrowserData(TOLLENTRY));
-  // }, [isToolTipOpen]);
+  useEffect(() => {
+    setTollNames(getBrowserData(TOLLENTRY));
+  }, [isToolTipOpen]);
 
-  useEffect(() => {}, [search]);
+  useEffect(() => {
+    if (search) {
+      setVehicleList(
+        getBrowserData(VEHICLE_ENTRY).filter((res) => {
+          return res.vehicleNumber.toLowerCase().includes(search.toLowerCase());
+        })
+      );
+    } else {
+      setVehicleList(getBrowserData(VEHICLE_ENTRY));
+    }
+  }, [search]);
 
   useEffect(() => {
     if (filter) {
-      let filteredBy = vehicleLists.filter((res) => {
-        return res.tollName === filter;
-      });
-
-      setVehicleList(filteredBy);
+      setVehicleList(
+        vehicleLists.filter((res) => {
+          return res.tollName.toLowerCase().includes(filter.toLowerCase());
+        })
+      );
+    } else {
+      setVehicleList(getBrowserData(VEHICLE_ENTRY));
     }
   }, [filter]);
 
@@ -50,12 +62,6 @@ const VehicleListContainer = (props) => {
     }
   };
 
-  const handleSearch = (event) => {
-    const { value } = event.target;
-
-    setSearch(value);
-  };
-
   const handleNavigation = () => {
     navigate("/tollList");
   };
@@ -67,8 +73,8 @@ const VehicleListContainer = (props) => {
 
   const containerFunctions = {
     onHandelPopup: (key) => onHandelPopup(key),
-    handleSearch: (event) => handleSearch(event),
     filteredBy: (FilteredValue) => filteredBy(FilteredValue),
+    setSearch: (searchValue) => setSearch(searchValue),
     handleNavigation: () => handleNavigation(),
     setToolTip: (value) => setToolTip(value),
   };

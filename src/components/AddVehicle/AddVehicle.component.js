@@ -1,4 +1,3 @@
-import { TollNames } from "../../utils/InitialStates";
 import "./AddVehicle.style.scss";
 
 const AddVehicle = (props) => {
@@ -11,8 +10,14 @@ const AddVehicle = (props) => {
   };
 
   const renderFields = () => {
-    const { vehicleNames, handleOnChange, handleSubmit, isButtonEnable } =
-      props;
+    const {
+      vehicleNames,
+      vehicleEntry,
+      tollNamesList,
+      handleOnChange,
+      handleSubmit,
+      isButtonEnable,
+    } = props;
     return (
       <>
         {Heading()}
@@ -21,19 +26,6 @@ const AddVehicle = (props) => {
           className="Field-Container"
           onSubmit={(event) => handleSubmit(event)}
         >
-          <div className="Field-DropDown">
-            <label className="Label">Select toll name</label>
-            <select
-              className="DropDown-List"
-              name="tollName"
-              onChange={handleOnChange}
-            >
-              <option>Select toll name</option>
-              {TollNames.map((tollName) => {
-                return <option>{tollName.name}</option>;
-              })}
-            </select>
-          </div>
           <div className="Field-DropDown">
             <label className="Label">Select vehicle type</label>
             <select
@@ -57,14 +49,29 @@ const AddVehicle = (props) => {
               onChange={handleOnChange}
             />
           </div>
+          <div className="Field-DropDown">
+            <label className="Label">Select toll name</label>
+            <select
+              className="DropDown-List"
+              name="tollName"
+              onChange={handleOnChange}
+            >
+              <option>Select toll name</option>
+              {tollNamesList?.map(({ tollName }) => {
+                return <option>{tollName}</option>;
+              })}
+            </select>
+          </div>
           <div className="Field-Input">
-            <label className="Label">Traiff</label>
+            <label className="Label">Tariff</label>
             <input
               type={"text"}
-              name="traiff"
-              placeholder="Traiff amount"
+              name="tariff"
+              placeholder="Tariff amount"
               autocomplete="off"
+              value={vehicleEntry.tariff ? vehicleEntry.tariff : ""}
               onChange={handleOnChange}
+              disabled={true}
             />
           </div>
           <div className={isButtonEnable ? "Submit-Button" : "Disabled"}>

@@ -6,7 +6,7 @@ import "./TollList.style.scss";
 
 const TollList = (props) => {
   const HeaderList = () => {
-    const { handleSearch } = props;
+    const { setSearch } = props;
 
     return (
       <>
@@ -17,7 +17,7 @@ const TollList = (props) => {
               <input
                 className="Search-Input"
                 placeholder="Search a toll"
-                onChange={handleSearch}
+                onChange={(e) => setSearch(e.target.value)}
               />
               <i className="Search-Icon">{SearchIcon()}</i>
             </div>
@@ -87,8 +87,9 @@ const TollList = (props) => {
             {
               id,
               tollName,
-              singleJouurney_one,
-              singleJouurney_two,
+              singleJourney_one,
+              returnJourney_one,
+              singleJourney_two,
               returnJourney_two,
               singleJourney_three,
               returnJourney_three,
@@ -100,9 +101,11 @@ const TollList = (props) => {
             return (
               <tr key={index}>
                 <td className="T-Body Toll-Name">{tollName}</td>
-                <td className="T-Body">{singleJouurney_one}</td>
                 <td className="T-Body">
-                  {singleJouurney_two + "/" + returnJourney_two}
+                  {singleJourney_one + "/" + returnJourney_one}
+                </td>
+                <td className="T-Body">
+                  {singleJourney_two + "/" + returnJourney_two}
                 </td>
                 <td className="T-Body">
                   {singleJourney_three + "/" + returnJourney_three}
@@ -135,7 +138,7 @@ const TollList = (props) => {
           {renderTHead()}
           {renderTBody()}
         </table>
-        {!tollLists && noRecordFound()}
+        {tollLists?.length === 0 && noRecordFound()}
       </>
     );
   };
